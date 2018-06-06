@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tie="http://tiefaces.org/tiefaces">
+
+<h:head>
+    <title>TieFaces Demo :: Data Input</title>
+</h:head>
+
+<h:body>
+    <h3>Use Case 3: Data Input</h3>
+
+    <p>How to use web sheet component to input data</p>
+
+    <p>Unlock the cells which need input data</p>
+    <p>Lock all other cells which only for display.</p>
+
+    <h:form id="form1">
+        <tie:websheet id="sheet1" webSheetBean="#{webSheetDataInput}"
+                      maxRowsPerPage="30" >
+        </tie:websheet>
+
+        <p>
+            <p:commandButton id="cmdExportResult" value="Export result to Excel"
+                             ajax="false" actionListener="#{webSheetDataInput.doExport()}">
+                <p:fileDownload value="#{webSheetDataInput.exportFile}" />
+            </p:commandButton>
+            <p:commandButton id="cmdExportTemplate" value="Export template to Excel"
+                             ajax="false" actionListener="#{webSheetDataInput_Config.doExport()}">
+                <p:fileDownload value="#{webSheetDataInput_Config.exportFile}" />
+            </p:commandButton>
+        </p>
+    </h:form>
+</h:body>
+</html>
