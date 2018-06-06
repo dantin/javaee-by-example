@@ -10,10 +10,10 @@
 </h:head>
 
 <h:body>
-    <h3>Use Case 4: Validataion</h3>
+    <h2>Use Case 4: Validataion</h2>
 
     <h:form id="form1">
-        <h4>Demo 1: Validation Rules</h4>
+        <h3>Demo 1: Validation Rules</h3>
 
         <div class="source">
         <pre class="prettyprint">
@@ -39,5 +39,35 @@
         </p>
     </h:form>
 
+    <h:form id="form2">
+
+        <h3>Demo 2: Pass validation process to back-end bean through EL</h3>
+
+        <div class="source">
+            <pre class="prettyprint">
+                $validate{rule="\#{ruleBean.checkRule1($value)}" error="Value must be greater than zero (0)."}
+                $validate{rule="\#{ruleBean.checkRule2($value)}" error="Value must be less than or equal to 500,000."}
+            </pre>
+        </div>
+
+        <tie:websheet id="sheet3" webSheetBean="#{webSheetServerValidation}"
+                      maxRowsPerPage="30">
+        </tie:websheet>
+        <p>
+
+            <p:commandButton id="cmdServerExportTemplate"
+                             value="Download the template" ajax="false"
+                             actionListener="#{webSheetServerValidation_Config.doExport()}">
+                <p:fileDownload
+                        value="#{webSheetServerValidation_Config.exportFile}" />
+            </p:commandButton>
+
+            <p:commandButton id="cmdServerExportResult"
+                             value="Download the result" ajax="false"
+                             actionListener="#{webSheetServerValidation.doExport()}">
+                <p:fileDownload value="#{webSheetServerValidation.exportFile}" />
+            </p:commandButton>
+        </p>
+    </h:form>
 </h:body>
 </html>
