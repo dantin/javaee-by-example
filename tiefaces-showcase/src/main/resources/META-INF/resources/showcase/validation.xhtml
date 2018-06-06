@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tie="http://tiefaces.org/tiefaces">
+
+<h:head>
+    <title>TieFaces Demo :: Validation</title>
+</h:head>
+
+<h:body>
+    <h3>Use Case 4: Validataion</h3>
+
+    <h:form id="form1">
+        <h4>Demo 1: Validation Rules</h4>
+
+        <div class="source">
+        <pre class="prettyprint">
+            $validate{rule="$value&gt;0" error="Value must be greater than zero (0)."}
+            $validate{rule="$value&lt;=500000" error="Value must be less than or equal to 500,000."}.
+        </pre>
+        </div>
+
+        <tie:websheet id="sheet2" webSheetBean="#{webSheetValidation}"
+                      maxRowsPerPage="30">
+        </tie:websheet>
+        <p>
+            <p:commandButton id="cmdExportTemplate"
+                             value="Download the template" ajax="false"
+                             actionListener="#{webSheetValidation_Config.doExport()}">
+                <p:fileDownload value="#{webSheetValidation_Config.exportFile}" />
+            </p:commandButton>
+
+            <p:commandButton id="cmdExportResult" value="Download the result"
+                             ajax="false" actionListener="#{webSheetValidation.doExport()}">
+                <p:fileDownload value="#{webSheetValidation.exportFile}" />
+            </p:commandButton>
+        </p>
+    </h:form>
+
+</h:body>
+</html>
