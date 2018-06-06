@@ -15,6 +15,6 @@ public class RuleBean implements Serializable {
     }
 
     public boolean checkRule2(double value) {
-        return value >0 && value < 500000;
+        return value > 0 && value < 500000;
     }
 }

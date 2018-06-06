@@ -69,5 +69,30 @@
             </p:commandButton>
         </p>
     </h:form>
+
+    <h:form id="form3">
+
+        <h3>Demo 3: Implement TieWebSheetValidation interface.</h3>
+
+
+        <tie:websheet id="sheet3" webSheetBean="#{webSheetCenterValidation}"
+                      maxRowsPerPage="30">
+        </tie:websheet>
+        <p>
+
+            <p:commandButton id="cmdCenterExportTemplate"
+                             value="Download the template" ajax="false"
+                             actionListener="#{webSheetCenterValidation_Config.doExport()}">
+                <p:fileDownload
+                        value="#{webSheetCenterValidation_Config.exportFile}" />
+            </p:commandButton>
+
+            <p:commandButton id="cmdCenterExportResult"
+                             value="Download the result" ajax="false"
+                             actionListener="#{webSheetCenterValidation.doExport()}">
+                <p:fileDownload value="#{webSheetCenterValidation.exportFile}" />
+            </p:commandButton>
+        </p>
+    </h:form>
 </h:body>
 </html>
