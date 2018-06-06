@@ -14,13 +14,13 @@
     <h3>Use Case 2: Reports</h3>
     <p>Set attribute readOnly="true".</p>
     <h:form id="form1">
-        <p>Excel Template.</p>
+        <p>Excel Template:</p>
 
         <tie:websheet id="sheet1" webSheetBean="#{webSheetReports_Config}"
                       maxRowsPerPage="30" readOnly="true">
         </tie:websheet>
 
-        <p>Data</p>
+        <p>Data:</p>
 
         <p:dataTable var="item" value="#{webSheetReports.itemList}"
                      rows="5" paginator="true" paginatorPosition="bottom" style="width:800px;">
@@ -47,6 +47,8 @@
                 <p:fileDownload value="#{webSheetReports.exportFile}" />
             </p:commandButton>
         </p>
+
+        <p>Excel Render Result:</p>
 
         <tie:websheet id="sheet2" webSheetBean="#{webSheetReports}"
                       maxRowsPerPage="30" readOnly="true" showLineNumber="false">
