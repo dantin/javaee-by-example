@@ -2,6 +2,8 @@ package com.github.dantin.tiefaces.showcase.model.websheet;
 
 import org.tiefaces.components.websheet.TieWebSheetValidation;
 
+import java.util.Map;
+
 public class ValidationBean implements TieWebSheetValidation {
     /**
      *
@@ -27,7 +29,8 @@ public class ValidationBean implements TieWebSheetValidation {
     }
 
     @Override
-    public String validate(String sheetName, int rowIndex, int colIndex, String inputValue) {
+    public String validate(Map<String, Object> dataContext, String dataField, String nestedDataFullName,
+                           String sheetName, int rowIndex, int colIndex, String inputValue) {
         boolean pass = true;
         switch (colIndex) {
             case 3:

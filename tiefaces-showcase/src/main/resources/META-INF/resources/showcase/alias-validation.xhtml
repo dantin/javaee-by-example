@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tie="http://tiefaces.org/tiefaces">
+
+<h:head>
+    <title>TieFaces Demo :: Alias &amp; Validation Interface</title>
+</h:head>
+
+<h:body>
+    <h3>Use Case 5: Alias &amp; Validation Interface</h3>
+
+    <h:form id="form1">
+
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+        <tie:websheet id="sheet2" webSheetBean="#{webSheetAliasValidation}"
+                      tableWidthStyle="width:500px" maxRowsPerPage="30">
+        </tie:websheet>
+
+        <p>
+            <p:commandButton id="cmdExportTemplate"
+                             value="Download the template" ajax="false"
+                             actionListener="#{webSheetAliasValidation_Config.doExport()}">
+                <p:fileDownload
+                        value="#{webSheetAliasValidation_Config.exportFile}" />
+            </p:commandButton>
+
+            <p:commandButton id="cmdExportResult" value="Download the result"
+                             ajax="false" actionListener="#{webSheetAliasValidation.doExport()}">
+                <p:fileDownload value="#{webSheetAliasValidation.exportFile}" />
+            </p:commandButton>
+
+            <p:commandButton id="cmdSave" value="Save Form"
+                             actionListener="#{webSheetAliasValidation.doSave()}"
+                             update="sheet2">
+            </p:commandButton>
+
+            <p:commandButton id="cmdSubmit" value="Submit Form"
+                             actionListener="#{webSheetAliasValidation.doSubmit()}"
+                             update="sheet2">
+            </p:commandButton>
+        </p>
+        <p>Save Form: Allow save form with empty fields like "Name". </p>
+        <p>Submit Form: Need to pass all the rules. </p>
+        <p>Rules: Name is required with length less than 20. Bonus cannot over 50%. Total cannot over 3000.</p>
+
+    </h:form>
+</h:body>
+</html>
