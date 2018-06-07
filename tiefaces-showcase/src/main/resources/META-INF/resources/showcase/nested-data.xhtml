@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tie="http://tiefaces.org/tiefaces">
+
+<h:head>
+    <title>TieFaces Demo :: Nested Data Collections</title>
+</h:head>
+
+<h:body>
+    <h2>Use Case 6: Nested Data Collections</h2>
+
+    <p>
+        In this example, one company contain multiple departments while each department contain multiple employee.
+    </p>
+    <p>
+        Note: the "Sub total" and "Total" are excel formula. After collection data populated, they have been changed.
+    </p>
+    <h:form id="form1">
+        <h3>Excel Template</h3>
+        <tie:websheet id="sheet1" webSheetBean="#{webSheetDataAnnotation_Config}"
+                      maxRowsPerPage="30" readOnly="true">
+        </tie:websheet>
+
+        <p:commandButton id="cmdExport1" value="Download the Excel Template"
+                         ajax="false" actionListener="#{webSheetDataAnnotation_Config.doExport()}">
+            <p:fileDownload value="#{webSheetDataAnnotation_Config.exportFile}" />
+        </p:commandButton>
+    </h:form>
+
+    <h:form id="form2">
+        <h3>Populated Web Sheet (Editable)</h3>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+        <tie:websheet id="sheet2" webSheetBean="#{webSheetDataAnnotation}"
+                      maxRowsPerPage="100" >
+        </tie:websheet>
+
+        <p:commandButton id="cmdExport2" value="Download the Excel Sheet"
+                         ajax="false" actionListener="#{webSheetDataAnnotation.doExport()}">
+            <p:fileDownload value="#{webSheetDataAnnotation.exportFile}" />
+        </p:commandButton>
+
+    </h:form>
+</h:body>
+</html>
