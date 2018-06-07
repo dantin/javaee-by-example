@@ -22,7 +22,6 @@ public class Employee {
     public Employee() {
     }
 
-
     public Employee(String name, Double worktime, Double payment, Double bonus, String birthDate, String sex) {
         this.name = name;
         this.worktime = worktime;
@@ -35,7 +34,6 @@ public class Employee {
         }
     }
 
-
     public static List<Employee> generate(int num) {
         List<Employee> result = new ArrayList<>();
         for (int index = 0; index < num; index++) {
@@ -45,7 +43,6 @@ public class Employee {
     }
 
     private static SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
-
 
     public static Employee generateOne(String nameSuffix) {
         return new Employee("Employee " + nameSuffix, (double) random.nextInt(100), 1000 + random.nextDouble() * 5000, random.nextInt(100) / 100.0d, dateformat.format(new Date(current - (1000000 + random.nextInt(1000000)))), "M");
@@ -59,26 +56,21 @@ public class Employee {
         this.name = name;
     }
 
-
     public Double getWorktime() {
         return worktime;
     }
-
 
     public void setWorktime(Double worktime) {
         this.worktime = worktime;
     }
 
-
     public String getSex() {
         return sex;
     }
 
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
 
     public Double getPayment() {
         return payment;
@@ -111,7 +103,6 @@ public class Employee {
     public void setSuperior(Employee superior) {
         this.superior = superior;
     }
-
 
     public Double getTotal() {
         return total;
