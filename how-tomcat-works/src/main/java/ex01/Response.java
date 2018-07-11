@@ -13,6 +13,12 @@ import java.io.OutputStream;
 public class Response {
     private static final int BUFFER_SIZE = 1024;
 
+    private static final String OK = "HTTP/1.1 OK\r\n";
+    private static final String NOT_FOUND = "HTTP/1.1 404 File Not Found\r\n";
+    private static final String CONTENT_TYPE = "Content-Type:text/html\r\n";
+    private static final String CONTENT_LENGTH = "Content-Length:%d\r\n";
+    private static final String EMPTY_LINE = "\r\n";
+
     Request request;
     OutputStream outputStream;
 
@@ -31,6 +37,10 @@ public class Response {
         try {
             File file = new File(HttpServer.WEB_ROOT, request.getUri());
             if (file.exists()) {
+                outputStream.write(OK.getBytes());
+                outputStream.write(CONTENT_TYPE.getBytes());
+                outputStream.write(String.format(CONTENT_LENGTH, file.length()).getBytes());
+                outputStream.write(EMPTY_LINE.getBytes());
                 fis = new FileInputStream(file);
                 int ch = fis.read(bytes, 0, BUFFER_SIZE);
                 while (ch != -1) {
@@ -38,10 +48,10 @@ public class Response {
                     ch = fis.read(bytes, 0, BUFFER_SIZE);
                 }
             } else {
-                String errorMessage = "HTTP/1.1 404 File Not Found\r\n"
-                        + "Content-Type:text/html\r\n"
-                        + "Content-Length:23\r\n"
-                        + "\r\n"
+                String errorMessage = NOT_FOUND
+                        + CONTENT_TYPE
+                        + String.format(CONTENT_LENGTH, 23)
+                        + EMPTY_LINE
                         + "<h1>File Not Found</h1>";
                 outputStream.write(errorMessage.getBytes());
             }
