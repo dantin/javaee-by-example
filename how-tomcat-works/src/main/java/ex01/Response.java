@@ -8,6 +8,14 @@ import java.io.OutputStream;
 /**
  * Response object.
  *
+ * Format:
+ *
+ *   Status-Line
+ *   *(( general-header | response-header | entity-header) CRLF)
+ *   CRLF
+ *
+ *   Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+ *
  * @version 1.0 2018-07-11
  */
 public class Response {

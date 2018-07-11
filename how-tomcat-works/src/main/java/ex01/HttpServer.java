@@ -18,10 +18,18 @@ import java.net.Socket;
  * @version 1.0 2018-07-11
  */
 public class HttpServer {
+    /**
+     * WEB_ROOT is the directory where out HTML and other files reside.
+     * For this package, WEB_ROOT is the "webroot" directory under the working directory.
+     *
+     * The working directory is the location in the file system from where the `java` command was invoked.
+     */
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "webroot";
 
+    // shutdown command.
     private static final String SHUTDOWN = "/SHUTDOWN";
 
+    // shutdown command flag.
     private boolean shutdown = false;
 
     public void await() {
@@ -29,6 +37,7 @@ public class HttpServer {
         int port = 8080;
 
         try {
+            // backlog is 1, that is the queue of request.
             serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,15 +50,19 @@ public class HttpServer {
                 InputStream inputStream = socket.getInputStream();
                 OutputStream outputStream = socket.getOutputStream();
 
+                // Create & parse Request object.
                 Request request = new Request(inputStream);
                 request.parse();
 
+                // Create Response object.
                 Response response = new Response(outputStream);
                 response.setRequest(request);
                 response.sendStaticResource();
 
+                // Close socket.
                 socket.close();
 
+                // Check if the previous URI is a shutdown command.
                 shutdown = request.getUri().equals(SHUTDOWN);
             } catch (Exception e) {
                 e.printStackTrace();

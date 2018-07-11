@@ -18,6 +18,9 @@ public class Request {
         this.input = input;
     }
 
+    /**
+     * Read character from socket.
+     */
     public void parse() {
         StringBuilder request = new StringBuilder(BUFFER_SIZE);
         int i;
@@ -40,7 +43,7 @@ public class Request {
     /**
      * Get resource string.
      *
-     * @param requestString standard http format string, e.g. 'GET /index.html'
+     * @param requestString standard http format string, e.g. 'GET /index.html HTTP/1.1'
      * @return resource location, e.g. '/index.html'
      */
     public String parseUri(String requestString) {
