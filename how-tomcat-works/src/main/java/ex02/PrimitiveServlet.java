@@ -20,6 +20,10 @@ public class PrimitiveServlet implements Servlet {
         System.out.println("from service");
 
         PrintWriter out = servletResponse.getWriter();
+        out.println("HTTP/1.1 OK");
+        out.println("Content-Type:text/html");
+        out.println("Content-Length:22");
+        out.println();
         out.println("Hello, Roses are red.");
         out.print("Violets are blue.");
     }
