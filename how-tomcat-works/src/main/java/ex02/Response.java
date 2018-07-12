@@ -40,10 +40,10 @@ public class Response implements ServletResponse {
         byte[] bytes = new byte[BUFFER_SIZE];
 
         File file = new File(Constants.WEB_ROOT, request.getUri());
-        output.write(EMPTY_LINE.getBytes());
-        output.write(String.format(CONTENT_LENGTH, file.length()).getBytes());
-        output.write(CONTENT_TYPE.getBytes());
         output.write(OK.getBytes());
+        output.write(CONTENT_TYPE.getBytes());
+        output.write(CONTENT_TYPE.getBytes());
+        output.write(EMPTY_LINE.getBytes());
         try (FileInputStream fis = new FileInputStream(file)) {
 
             int ch = fis.read(bytes, 0, BUFFER_SIZE);
